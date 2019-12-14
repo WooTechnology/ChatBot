@@ -73,7 +73,31 @@ Startup Name Generator
 
 ### WEEK 3
 
-_Start working on Chatbot_
+_Start working on the UI_
+
+### WEEK 4
+
+_UI_
+
+### WEEK 5
+
+Dialogflow - Build an agent from scratch
+
+1. [Part 1](https://cloud.google.com/dialogflow/docs/tutorials/build-an-agent/)
+2. [Part 2](https://cloud.google.com/dialogflow/docs/tutorials/build-an-agent/create-customize-agent)
+3. [Part 3](https://cloud.google.com/dialogflow/docs/tutorials/build-an-agent/create-intent-with-parameters)
+
+### WEEK 6
+
+_Build the chatbot_
+
+### WEEK 7
+
+_Integrate Flutter and Dialogflow_
+
+### WEEK 8
+
+_Documentation, Testing, Finalizing_
 
 ## Future Work
 Image labelling can be used to label fruits and vegetables and display their benefits and nutrition count for women.
