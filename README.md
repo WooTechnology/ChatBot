@@ -56,7 +56,7 @@ Since every one prefers a different approach to learning, I'm gonna try my best 
 
 Flutter Installation and Setup
 
-1. [Windows](youtube.com/watch?v=M3UfYS0bqhE&list=PLRAV69dS1uWT-ooTYHCqgxMTGA233JMrP&index=4)
+1. [Windows](https://www.youtube.com/watch?v=M3UfYS0bqhE&list=PLRAV69dS1uWT-ooTYHCqgxMTGA233JMrP&index=4)
 2. [macOS](https://www.youtube.com/watch?v=Xy-qHlaHr6c&list=PLRAV69dS1uWT-ooTYHCqgxMTGA233JMrP&index=2)
 
 VSCode Setup
