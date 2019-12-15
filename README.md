@@ -71,15 +71,17 @@ Startup Name Generator
 1. [Part 1](https://flutter.dev/docs/get-started/codelab)
 2. [Part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2/#0)
 
+Basic UI for the chatbot
+
 ### WEEK 3
 
-_Start working on the UI_
+Dialogflow and Flutter
+
+1. [Blog](https://ptyagicodecamp.github.io/implementing-flutter-factsbot-using-dialogflow.html)
+2. [Lecture](https://www.youtube.com/watch?v=89XIlULDQKg)
+
 
 ### WEEK 4
-
-_UI_
-
-### WEEK 5
 
 Dialogflow - Build an agent from scratch
 
@@ -87,13 +89,18 @@ Dialogflow - Build an agent from scratch
 2. [Part 2](https://cloud.google.com/dialogflow/docs/tutorials/build-an-agent/create-customize-agent)
 3. [Part 3](https://cloud.google.com/dialogflow/docs/tutorials/build-an-agent/create-intent-with-parameters)
 
+
+### WEEK 5
+
+_Build the chatbot on Dialogflow_
+
 ### WEEK 6
 
-_Build the chatbot_
+_Build the chatbot on Dialogflow_
 
 ### WEEK 7
 
-_Integrate Flutter and Dialogflow_
+_UI for bot and Integrate Flutter and Dialogflow_
 
 ### WEEK 8
 
