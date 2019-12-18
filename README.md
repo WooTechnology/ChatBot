@@ -77,8 +77,12 @@ Basic UI for the chatbot
 
 Dialogflow and Flutter
 
+(To be followed till App's Integration with DialogFlow)
 1. [Blog](https://ptyagicodecamp.github.io/implementing-flutter-factsbot-using-dialogflow.html)
 2. [Lecture](https://www.youtube.com/watch?v=89XIlULDQKg)
+
+
+After following the above blog add [this](https://gist.github.com/CheshtaK/c47f258abaf1a5c9af4d358e51024cb7) to your main.dart file.
 
 
 ### WEEK 4
