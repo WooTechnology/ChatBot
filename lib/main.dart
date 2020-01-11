@@ -1,4 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final GoogleSignIn googleSignIn = GoogleSignIn();
+
+Future<String> signInWithGoogle() async {
+  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+  final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+
+  final AuthCredential credential = GoogleAuthProvider.getCredential(
+    accessToken: googleSignInAuthentication.accessToken,
+    idToken: googleSignInAuthentication.idToken,
+  );
+
+  final AuthResult authResult = await _auth.signInWithCredential(credential);
+  final FirebaseUser user = authResult.user;
+
+  assert(!user.isAnonymous);
+  assert(await user.getIdToken() != null);
+
+  final FirebaseUser currentUser = await _auth.currentUser();
+  assert(user.uid == currentUser.uid);
+
+  return 'signInWithGoogle succeeded: $user';
+}
+
+void signOutGoogle() async{
+  await googleSignIn.signOut();
+
+  print("User Sign Out");
+}
 
 void main() => runApp(MyApp());
 
@@ -7,7 +40,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ELIANA CHATBOT',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,7 +53,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(title: 'Login Page'),
     );
   }
 }
@@ -44,34 +78,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+  
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+  Widget build(BuildContext context) { 
     return Scaffold(
-      appBar: AppBar(
+      
+      
+      //appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+        //title: Text(widget.title),
+      //),
       body: Center(
+        
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -89,23 +108,70 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            
+            
+            //SizedBox(height: 20),
+            TextField(
+                obscureText: true,
+                  decoration: InputDecoration(
+                  
+                  border: OutlineInputBorder(),
+                    labelText: 'Username/Email/Phone',
+                    
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            SizedBox(height: 15),
+            TextField(
+                obscureText: true,
+                  decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                    labelText: 'Password',
+              ),
             ),
+
+        
+        SizedBox(height: 15),
+        new Container(
+    child: new Row(
+
+      children: <Widget>[
+        SizedBox(width: 110),
+      new RaisedButton(
+        child: new Text("LOGIN"),
+        color:  Colors.blueAccent[600],
+        onPressed: () {},
+        ),
+
+      SizedBox(width: 15),
+      new RaisedButton(
+        child: new Text("SIGNUP"),
+        color:  Colors.blueAccent[600],
+        onPressed: () {},
+        ),
+
+
+      ],
+    ),
+  ),
+          SizedBox(height: 40),
+         Text('LOGIN WITH SOCIAL ACCOUNT', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:18),), 
+     SizedBox(height: 15),
+      new RaisedButton(
+        child: new Text("Google", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:18),),
+        color:  Colors.red[600],
+        onPressed: () {
+          signInWithGoogle().whenComplete(() {
+        });
+      },
+    ),
+       
+  
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

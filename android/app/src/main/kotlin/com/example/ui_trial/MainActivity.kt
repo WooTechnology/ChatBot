@@ -1,4 +1,4 @@
-package com.example.eliana_chatbot
+package com.example.ui_trial
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
