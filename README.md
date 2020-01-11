@@ -19,14 +19,6 @@ Don't be afraid to ask any questions (however irrelevant you think it may be).
 A chatbot app for girls and women to answer questions around taboo topics such as menstruation, pregnancy, abortion, STDs, depression, anxiety, etc. 
 The frontend for the app will be built with Flutter (to develop a cross-platform app) and the bot will be built using Dialogflow.
 
-![alternativetext](assets/images/sachita%20chatpage.jpeg)
-![alternativetext](assets/images/loginpage.png)
-
-
-
-
-
-
 
 ## Prerequisites
 
