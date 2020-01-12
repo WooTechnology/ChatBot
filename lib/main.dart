@@ -1,176 +1,158 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn googleSignIn = GoogleSignIn();
-
-Future<String> signInWithGoogle() async {
-  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
-
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
-    accessToken: googleSignInAuthentication.accessToken,
-    idToken: googleSignInAuthentication.idToken,
-  );
-
-  final AuthResult authResult = await _auth.signInWithCredential(credential);
-  final FirebaseUser user = authResult.user;
-
-  assert(!user.isAnonymous);
-  assert(await user.getIdToken() != null);
-
-  final FirebaseUser currentUser = await _auth.currentUser();
-  assert(user.uid == currentUser.uid);
-
-  return 'signInWithGoogle succeeded: $user';
+void main() {
+  runApp(new FriendlychatApp());
 }
 
-void signOutGoogle() async{
-  await googleSignIn.signOut();
-
-  print("User Sign Out");
-}
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class FriendlychatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ELIANA CHATBOT',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Login Page'),
+    return new MaterialApp(
+      title: "CHATBOT",
+      home: new ChatScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class ChatScreen extends StatefulWidget {                     //modified
+  @override                                                        //new
+  State createState() => new ChatScreenState();                    //new
+} 
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+// Add the ChatScreenState class definition in main.dart.
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
+class ChatScreenState extends State<ChatScreen> {  
+   final List<ChatMessage> _messages = <ChatMessage>[]; 
+  final TextEditingController _textController = new TextEditingController();
+  bool _isComposing = false;                 //new
+  @override                                                        //new
+  Widget build(BuildContext context) {
+    
+  return new Scaffold(
+    appBar: new AppBar(title: new Text("ELIANA-CHATBOT",
+    style : TextStyle(color: Colors.white ,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontFamily: 'Pacifico_Regular',
+      fontSize: 25),
+    ),
+    
+    backgroundColor: Colors.red[800],
+    ),
+    
+    
+    body: 
+    Container(
+      decoration: BoxDecoration(image : DecorationImage( image : AssetImage("../assets/images/photo5.jpeg"),
+      fit: BoxFit.cover,
+      ),
+      ),
+      child : new Column(                                        //modified
+      children: <Widget>[                                         //new
+        new Flexible(                                             //new
+          child: new ListView.builder(                            //new 
+            padding: new EdgeInsets.all(8.0),
+                                 //new
+            reverse: true,                                        //new
+            itemBuilder: (_, int index) => _messages[index],      //new
+            itemCount: _messages.length,                          //new
+          ), 
+                                                               //new
+        ),
+                                                                //new
+        new Divider(height: 8.0),                                 //new
+        new Container(                                            //new
+          decoration: new BoxDecoration(
+            color: Colors.red[100],  
+            
+                          ),                //new
+          child: _buildTextComposer(),                       //modified
+        ),                                                        //new
+      ],                                                          //new
+    ),
+                                                               //new
+  ));
 }
+  Widget _buildTextComposer() {
+  return new IconTheme(
+    data: new IconThemeData(color: Theme.of(context).accentColor),
+    child: new Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: new Row(
+        children: <Widget>[
+          new Flexible(
+            child: new TextField(
+              controller: _textController,
+              onChanged: (String text) {          //new
+                setState(() {                     //new
+                  _isComposing = text.length > 0; //new
+                });                               //new
+              },                                  //new
+              onSubmitted: _handleSubmitted,
+              decoration:
+                  new InputDecoration(
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+          hintText: 'Enter your query'
+      ),
+            ),
+          ),
+          new Container(
+            margin: new EdgeInsets.symmetric(horizontal: 4.0),
+            child: new IconButton(
+              icon: new Icon(Icons.send),
+              onPressed: _isComposing
+                  ? () => _handleSubmitted(_textController.text)    //modified
+                  : null,                                           //modified
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+void _handleSubmitted(String text) {
+  _textController.clear();
+  setState(() {                                                    //new
+    _isComposing = false;                                          //new
+  }); 
+    ChatMessage message = new ChatMessage(                         //new
+      text: text,                                                  //new
+    );                                                             //new
+    setState(() {                                                  //new
+      _messages.insert(0, message);                                //new
+    });                                                            //new
+ }
 
-class _MyHomePageState extends State<MyHomePage> {
-  
+
+}
+const String _name = "Your Name";
+class ChatMessage extends StatelessWidget {
+  ChatMessage({this.text});
+  final String text;
   @override
-  Widget build(BuildContext context) { 
-    return Scaffold(
-      
-      
-      //appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        //title: Text(widget.title),
-      //),
-      body: Center(
-        
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            
-            
-            //SizedBox(height: 20),
-            TextField(
-                obscureText: true,
-                  decoration: InputDecoration(
-                  
-                  border: OutlineInputBorder(),
-                    labelText: 'Username/Email/Phone',
-                    
+  Widget build(BuildContext context) {
+    return new Container(
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      child: new Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Container(
+            margin: const EdgeInsets.only(right: 16.0),
+            child: new CircleAvatar(child: new Text(_name[0]),
+            backgroundColor: Colors.red[100]),
+          ),
+          new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text(_name, style: Theme.of(context).textTheme.subhead),
+              new Container(
+                margin: const EdgeInsets.only(top: 5.0),
+                child: new Text(text),
               ),
-            ),
-            SizedBox(height: 15),
-            TextField(
-                obscureText: true,
-                  decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                    labelText: 'Password',
-              ),
-            ),
-
-        
-        SizedBox(height: 15),
-        new Container(
-    child: new Row(
-
-      children: <Widget>[
-        SizedBox(width: 110),
-      new RaisedButton(
-        child: new Text("LOGIN"),
-        color:  Colors.blueAccent[600],
-        onPressed: () {},
-        ),
-
-      SizedBox(width: 15),
-      new RaisedButton(
-        child: new Text("SIGNUP"),
-        color:  Colors.blueAccent[600],
-        onPressed: () {},
-        ),
-
-
-      ],
-    ),
-  ),
-          SizedBox(height: 40),
-         Text('LOGIN WITH SOCIAL ACCOUNT', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:18),), 
-     SizedBox(height: 15),
-      new RaisedButton(
-        child: new Text("Google", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:18),),
-        color:  Colors.red[600],
-        onPressed: () {
-          signInWithGoogle().whenComplete(() {
-        });
-      },
-    ),
-       
-  
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
