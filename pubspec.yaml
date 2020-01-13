@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+
   flutter:
     sdk: flutter
 
@@ -25,9 +26,13 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.15.2
   google_sign_in: ^4.0.4
+  
+
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+   build_runner: ^1.5.0
+   
+   flutter_test:
+     sdk: flutter
 
 
 # For information on the generic Dart part of this file, see the
@@ -40,6 +45,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:     
+    - assets/images/photo5.jpeg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -71,3 +78,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  

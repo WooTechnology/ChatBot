@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'router.dart' as router;
+const String FACTS_DIALOGFLOW = "FACTS_DIALOGFLOW";
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -53,8 +55,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      debugShowCheckedModeBanner: false,
+       debugShowCheckedModeBanner: false,
       home: MyHomePage(title: 'Login Page'),
+      onGenerateRoute: router.generateRoute,
+      initialRoute: '/',
     );
   }
 }
@@ -142,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
       new RaisedButton(
         child: new Text("LOGIN"),
         color:  Colors.blueAccent[600],
-        onPressed: () {},
+        onPressed: () => Navigator.pushNamed(context, FACTS_DIALOGFLOW),
         ),
 
       SizedBox(width: 15),
