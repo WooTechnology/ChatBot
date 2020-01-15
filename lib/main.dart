@@ -168,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
         color:  Colors.red[600],
         onPressed: () {
           signInWithGoogle().whenComplete(() {
+           Navigator.pushNamed(context, FACTS_DIALOGFLOW);
         });
       },
     ),
