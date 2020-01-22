@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "eliana-chatbot",
+  "private_key_id": "841feb8f5a733e2adce3135073f3536d38925fc7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDPUSD4fdnSS3EB\n6veW5oq5G+fksW/nwkzsH1+8wY3dODWb6bKM0ls4zyv2SB9jYlP9gvh3DIJF7+bA\nxP+Zyc4Mo5AfFdSIVrEHhVsk3LCCmpRpJMf7aFsuYm4DN9ljdwBIKPDT+YbpHOaw\narl4zgtKPWiwSDtvxB7//Ui3lQqcluuw6qvQPLDh7T5dEOdbhLI8gyOZ8iT+SiQW\nNhjhdI7sCy2wBiZ97OkVwCkO64k2YNWk1BPgb5JAX65pq4OTrS9n3vCumDlVBVYd\nZJRZEU6aAqxaq3w9PPJND9TrqihxSg1BlMrrEdOp5A6z3yt6Fc76qBYT4tPEcZaq\nn2xslsGRAgMBAAECggEAW/xUwzzf5YGIuj+drIxNN/XsTdn225+oDsqa6X796Y5z\npuKp0PbS9+FgUa3Nk4TA3IZ8pSHdOZfIzHZ8LKnQbWYzX7+JZhcFBF/EwZXUEZbx\ny7dArkmuz2VoB7CDmbDm5J2ZwYwBMrSanOM1uSa+9qlJppHeIWilEpM47Q/JvhEi\nJwn++QulxtxvX/DurTgYNdnJ0jzG8nhnKjGS6p/7iIHBvqTocb+EGMF+HGZTLCp1\nDxKszvYg01gb55q/ijdeceXB+26/sf0BxmZnhkv3EuisdPHTlcQz9m168N1x+XpG\nd/fowLWHCSNpfbdozqkQ+cR7hBshOT+w/oLN5YYCUwKBgQDt14D47BKLpA6BQHF6\nNwbeCnX3TjzxYGHvIYyafV8NEiiymF/6Q+5Kz+MrInIFeI3vIuXuklYe3rtHLd5Y\n6QL8zXKkGq5ujnN3Ew5I5wGMVEFm7pjyezQJf0wrLSiGeI+wnVZfhQiJZQfGvqpU\nJHt6RQjtZNxq+3bLo7zi7l7rmwKBgQDfJQgMJLQy38zSLQaeV0usrQo45ei8uE1S\nOjNqsfjC9rpGuV9szPuB6wMZoU3q89DtKJQxw/22QmcUGQ051fnIPiGpdcsnZdvY\nzcHCJ1OaDJpr4DxH5pA+O/hgb8jBWC404bVUdHezQ/jE1oWUhsb//Ox3czqIkDR6\nQCsW8urIQwKBgGIZS+nfvPp5rT3kbamh/qQgnm1liL9qKJqwNMUXxtemUMDxFk0s\nLaIPwrvs1iipg6lJtJrFIt5Ssd327kmvufq5ZnqHQsD44mkPpAmvtjTCH8Orz8vb\nwyfTqH/6fUeRfHq1OoXlYhMBZ8ayp6BS99cDmF4KBtvdYi82FtdmyCHXAoGAR8EO\nr2j2EQ3qPQOBh1Um3mXeTaGQj27sXi6c7ghAp+DS0X82cjQQBBzgKFO4TH8OhdRw\novgVE5CSuOG9YQWvhnaEOIvKQeb9JOA1GAuxVG4NEfdPKwe3BmweWFRZx+JlKVgT\nCQ9SlnCbBCC/X51fTF22ZErHXbaRSWZs9Lo0SSUCgYBa18c7DwE3mFPwzjL+4XJW\nIHm7K3mLpUSnuqSv2EM+/ZodyrtGtYk7h+D301y+9dYYLy463RZEVCvI8c5gNgvx\nf6siN49VJ7oJp/+RndjjC8VhdE+N67RIg2+Aw0Pa7LjLSSioXX+eW7TBsiXToXxT\nXyeoFDikLdrkCvna7N2+Xg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "dialogflow-ndtmrq@eliana-chatbot.iam.gserviceaccount.com",
+  "client_id": "114428249068995809283",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-ndtmrq%40eliana-chatbot.iam.gserviceaccount.com"
+}

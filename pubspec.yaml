@@ -18,6 +18,9 @@ environment:
 
 dependencies:
 
+   
+  flutter_dialogflow: ^0.1.2
+
   flutter:
     sdk: flutter
 

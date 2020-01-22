@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogflow/dialogflow_v2.dart';
 
 void main() {
   runApp(new FriendlychatApp());
@@ -65,14 +66,14 @@ class ChatScreenState extends State<ChatScreen> {
             color: Colors.red[100],  
             
                           ),                //new
-          child: _buildTextComposer(),                       //modified
+          child: _buildTextComposer(context),                       //modified
         ),                                                        //new
       ],                                                          //new
     ),
                                                                //new
   ));
 }
-  Widget _buildTextComposer() {
+  Widget _buildTextComposer(BuildContext context) {
   return new IconTheme(
     data: new IconThemeData(color: Theme.of(context).accentColor),
     child: new Container(
@@ -111,48 +112,106 @@ class ChatScreenState extends State<ChatScreen> {
     ),
   );
 }
+
+void _dialogFlowResponse(query) async {
+    _textController.clear();
+    AuthGoogle authGoogle =
+    await AuthGoogle(fileJson: "assets\Eliana-Chatbot-841feb8f5a73.json").build();
+    Dialogflow dialogFlow =
+    Dialogflow(authGoogle: authGoogle, language: Language.english);
+    AIResponse response = await dialogFlow.detectIntent(query);
+    ChatMessage message = ChatMessage(
+      text: response.getMessage() ??
+           CardDialogflow(response.getListMessage()[0]).title,
+      name: "Flutter Bot",
+      type: false,
+    );
+    setState(() {
+      _messages.insert(0, message);
+    });
+  }
 void _handleSubmitted(String text) {
   _textController.clear();
   setState(() {                                                    //new
     _isComposing = false;                                          //new
   }); 
     ChatMessage message = new ChatMessage(                         //new
-      text: text,                                                  //new
+      text: text,
+      name: "Name",
+      
+      type: true,                                                  //new
     );                                                             //new
     setState(() {                                                  //new
       _messages.insert(0, message);                                //new
-    });                                                            //new
+    });  
+    _dialogFlowResponse(text);
+                                                          //new
  }
 
 
 }
-const String _name = "Your Name";
+
 class ChatMessage extends StatelessWidget {
-  ChatMessage({this.text});
+  ChatMessage({this.text,this.name,this.type});
   final String text;
+  
+  final String name;
+  final bool type;
+  
+
+  List<Widget> botMessage(context) {
+    return <Widget>[
+      Container(
+        margin: const EdgeInsets.only(right: 16.0),
+        child: CircleAvatar(child: Text('Bot'),backgroundColor: Colors.red[300]),
+        
+      ),
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(this.name,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(text),
+            ),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  List<Widget> userMessage(context) {
+    return <Widget>[
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Text(this.name, style: Theme.of(context).textTheme.subhead),
+            Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(text),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.only(left: 16.0),
+        child: CircleAvatar(child: new Text(this.name[0]),   backgroundColor: Colors.red[100]),
+        
+
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: new Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          new Container(
-            margin: const EdgeInsets.only(right: 16.0),
-            child: new CircleAvatar(child: new Text(_name[0]),
-            backgroundColor: Colors.red[100]),
-          ),
-          new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new Text(_name, style: Theme.of(context).textTheme.subhead),
-              new Container(
-                margin: const EdgeInsets.only(top: 5.0),
-                child: new Text(text),
-              ),
-            ],
-          ),
-        ],
+        children: this.type ? userMessage(context) : botMessage(context),
       ),
     );
   }
