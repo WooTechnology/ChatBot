@@ -112,7 +112,6 @@ class ChatScreenState extends State<ChatScreen> {
     ),
   );
 }
-
 void _dialogFlowResponse(query) async {
     _textController.clear();
     AuthGoogle authGoogle =
@@ -145,7 +144,7 @@ void _handleSubmitted(String text) {
       _messages.insert(0, message);                                //new
     });  
     _dialogFlowResponse(text);
-                                                          //new
+
  }
 
 
