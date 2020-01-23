@@ -49,6 +49,7 @@ flutter:
   uses-material-design: true
   assets:     
     - assets/images/photo5.jpeg
+    - assets/Eliana-Chatbot-5c76622a0296.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

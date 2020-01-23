@@ -29,11 +29,11 @@
 .pub-cache/
 .pub/
 /build/
-assets/Eliana-Chatbot-841feb8f5a73.json
-
 
 # Web related
 lib/generated_plugin_registrant.dart
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+/assets/Eliana-Chatbot-5c76622a0296.json
