@@ -29,6 +29,8 @@
 .pub-cache/
 .pub/
 /build/
+assets\Eliana-Chatbot-841feb8f5a73.json
+
 
 # Web related
 lib/generated_plugin_registrant.dart
