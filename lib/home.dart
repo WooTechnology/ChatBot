@@ -2,6 +2,9 @@ import 'package:eliana_chatbot/router.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as JSON;
 
 class HomePage extends StatefulWidget {
   @override
@@ -41,6 +44,46 @@ class _HomePageState extends State<HomePage> {
 
     print("User Sign Out");
   }
+
+  //fb login
+    bool _isLoggedIn=false;
+  Map userProfile;
+  final facebookLogin = FacebookLogin();
+
+  _loginWithFB() async{
+
+    
+    final result = await facebookLogin.logInWithReadPermissions(['email']);
+
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final token = result.accessToken.token;
+        final graphResponse = await http.get('https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${token}');
+        final profile = JSON.jsonDecode(graphResponse.body);
+        print(profile);
+        setState(() {
+          userProfile = profile;
+          _isLoggedIn = true;
+        });
+        break;
+
+      case FacebookLoginStatus.cancelledByUser:
+        setState(() => _isLoggedIn = false );
+        break;
+      case FacebookLoginStatus.error:
+        setState(() => _isLoggedIn = false );
+        break;
+    }
+
+  }
+
+  //_logout(){
+    //facebookLogin.logOut();
+    //setState(() {
+     // _isLoggedIn = false;
+   // });
+  //}
+  
 
   //ui
   @override
@@ -85,6 +128,7 @@ class _HomePageState extends State<HomePage> {
               ),
               color: Colors.blue[600],
               onPressed: () {
+                _loginWithFB();
                 Navigator.pushReplacementNamed(context, chat_page);
               },
             ),
