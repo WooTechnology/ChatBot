@@ -12,8 +12,9 @@ A chatbot for girls and women to answer questions around taboo topics such as me
 ![alt-text](https://github.com/WooTechnology/ChatBot/blob/master/screenshots/3.jpeg) &nbsp;&nbsp;
 
 ## App Demo
-https://drive.google.com/file/d/1_iZIIWgS2rHUTKbOt89ILLRKryvTM0Zn/view
-https://drive.google.com/file/d/133l2tjtBw5HHgGMsvsohqzvjJiX9_BPB/view?usp=sharing
+[Demo Video 1](https://drive.google.com/file/d/1_iZIIWgS2rHUTKbOt89ILLRKryvTM0Zn/view)
+
+[Demo Video 2](https://drive.google.com/file/d/133l2tjtBw5HHgGMsvsohqzvjJiX9_BPB/view?usp=sharing)
 
 ## Future Work
 Image labelling can be used to label fruits and vegetables and display their benefits and nutrition count for women.
